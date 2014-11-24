@@ -30,7 +30,7 @@ impl<A: Clone, T: Iterator<A>> Slide<T, A> {
     Slide{
       iter: iter,
       n: n,
-      window: vec![]
+      window: Vec::with_capacity(n)
     }
   }
 }
@@ -45,7 +45,7 @@ impl<A: Clone, T: Iterator<A>> Iterator<Vec<A>> for Slide<T, A> {
 
     loop {
       let window_status = self.window.len().cmp(&self.n);
-      
+
       match window_status {
         Greater => { self.window.remove(0); }
         Equal => { return Some(self.window.clone()); }
