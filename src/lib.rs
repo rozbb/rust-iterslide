@@ -37,10 +37,7 @@ impl<A: Clone, T: Iterator<A>> Slide<T, A> {
 
 impl<A: Clone, T: Iterator<A>> Iterator<Vec<A>> for Slide<T, A> {
   fn next(&mut self) -> Option<Vec<A>> {
-    if self.n == 0 {
-      return None
-    }
-
+    return_if!(self.n == 0, None);
     return_if!(!self.push_window(), None);
 
     loop {
