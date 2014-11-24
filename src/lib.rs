@@ -55,9 +55,19 @@ impl<A: Clone, T: Iterator<A>> Iterator<Vec<A>> for Slide<T, A> {
   }
 }
 
+pub trait SlideIterator<T: Iterator<A>, A> {
+  fn slide(self, n: uint) -> Slide<T, A>;
+}
+
+impl<A: Clone, T: Iterator<A>> SlideIterator<T, A> for T {
+  fn slide(self, n: uint) -> Slide<T, A> {
+    Slide::new(self, n)
+  }
+}
+
 #[test]
 fn test_slide() {
-  let mut slide_iter = Slide::new(vec![1i, 2, 3, 4, 5].into_iter(), 3);
+  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(3);
   assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3])
   assert_eq!(slide_iter.next().unwrap(), vec![2, 3, 4])
   assert_eq!(slide_iter.next().unwrap(), vec![3, 4, 5])
@@ -66,19 +76,19 @@ fn test_slide() {
 
 #[test]
 fn test_slide_equal_window() {
-  let mut slide_iter = Slide::new(vec![1i, 2, 3, 4, 5].into_iter(), 5);
+  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(5);
   assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3, 4, 5])
   assert!(slide_iter.next().is_none())
 }
 
 #[test]
 fn test_slide_zero_window() {
-  let mut slide_iter = Slide::new(vec![1i, 2, 3, 4, 5].into_iter(), 0);
+  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(0);
   assert!(slide_iter.next().is_none())
 }
 
 #[test]
 fn test_slide_overlong_window() {
-  let mut slide_iter = Slide::new(vec![1i, 2, 3, 4, 5].into_iter(), 7);
+  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(7);
   assert!(slide_iter.next().is_none())
 }
