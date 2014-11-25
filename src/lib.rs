@@ -17,13 +17,13 @@ macro_rules! return_if(
 impl<A: Clone, T: Iterator<A>> Slide<T, A> {
   fn push_window(&mut self) -> bool {
     let iter_next = self.iter.next();
+    let is_some = iter_next.is_some();
 
-    if iter_next.is_some() {
+    if is_some {
       self.window.push(iter_next.unwrap());
-      true
-    } else {
-      false
     }
+
+    is_some
   }
 
   fn new(iter: T, n: uint) -> Slide<T, A> {
