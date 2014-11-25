@@ -3,3 +3,9 @@
 name = "iterslide"
 version = "0.0.1"
 authors = ["Santiago Lapresta <santiago.lapresta@gmail.com>"]
+readme = "README.md"
+keywords = ["iterator", "iter", "slide", "sliding", "window"]
+license = "MIT"
+homepage = "https://github.com/slapresta/rust-iterslide"
+repository = "https://github.com/slapresta/rust-iterslide"
+description = "A \"sliding window\" iterator."
