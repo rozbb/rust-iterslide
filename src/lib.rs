@@ -30,7 +30,7 @@ impl<A: Clone, T: Iterator<A>> Slide<T, A> {
     Slide{
       iter: iter,
       n: n,
-      window: Vec::with_capacity(n)
+      window: Vec::with_capacity(n + 1)
     }
   }
 }
