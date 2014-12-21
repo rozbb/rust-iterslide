@@ -12,7 +12,7 @@ macro_rules! return_if(
       return $value;
     }
   );
-)
+);
 
 impl<A: Clone, T: Iterator<A>> Slide<T, A> {
   fn push_window(&mut self) -> bool {
@@ -65,27 +65,27 @@ impl<A: Clone, T: Iterator<A>> SlideIterator<T, A> for T {
 #[test]
 fn test_slide() {
   let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(3);
-  assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3])
-  assert_eq!(slide_iter.next().unwrap(), vec![2, 3, 4])
-  assert_eq!(slide_iter.next().unwrap(), vec![3, 4, 5])
-  assert!(slide_iter.next().is_none())
+  assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3]);
+  assert_eq!(slide_iter.next().unwrap(), vec![2, 3, 4]);
+  assert_eq!(slide_iter.next().unwrap(), vec![3, 4, 5]);
+  assert!(slide_iter.next().is_none());
 }
 
 #[test]
 fn test_slide_equal_window() {
   let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(5);
-  assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3, 4, 5])
-  assert!(slide_iter.next().is_none())
+  assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3, 4, 5]);
+  assert!(slide_iter.next().is_none());
 }
 
 #[test]
 fn test_slide_zero_window() {
   let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(0);
-  assert!(slide_iter.next().is_none())
+  assert!(slide_iter.next().is_none());
 }
 
 #[test]
 fn test_slide_overlong_window() {
   let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(7);
-  assert!(slide_iter.next().is_none())
+  assert!(slide_iter.next().is_none());
 }
