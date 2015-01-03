@@ -1,5 +1,7 @@
 #![feature(macro_rules)]
 
+use std::cmp::Ordering::{Greater, Equal, Less};
+
 pub struct Slide<T: Iterator<A>, A> {
   iter: T,
   n: uint,
