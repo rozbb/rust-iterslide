@@ -16,3 +16,9 @@ fn main() {
   }
 }
 ```
+
+Contributors
+----
+
+[@doomrobo](https://github.com/doomrobo) updated the code to run on the
+latest Rust version. Thanks, @doomrobo! :)
