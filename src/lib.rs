@@ -2,9 +2,9 @@
 
 use std::cmp::Ordering::{Greater, Equal, Less};
 
-pub struct Slide<T: Iterator<A>, A> {
+pub struct Slide<T: Iterator<Item=A>, A> {
   iter: T,
-  n: uint,
+  n: usize,
   window: Vec<A>
 }
 
@@ -16,7 +16,7 @@ macro_rules! return_if(
   );
 );
 
-impl<A: Clone, T: Iterator<A>> Slide<T, A> {
+impl<A: Clone, T: Iterator<Item=A>> Slide<T, A> {
   fn push_window(&mut self) -> bool {
     let iter_next = self.iter.next();
     let is_some = iter_next.is_some();
@@ -28,7 +28,7 @@ impl<A: Clone, T: Iterator<A>> Slide<T, A> {
     is_some
   }
 
-  fn new(iter: T, n: uint) -> Slide<T, A> {
+  fn new(iter: T, n: usize) -> Slide<T, A> {
     Slide{
       iter: iter,
       n: n,
@@ -37,7 +37,9 @@ impl<A: Clone, T: Iterator<A>> Slide<T, A> {
   }
 }
 
-impl<A: Clone, T: Iterator<A>> Iterator<Vec<A>> for Slide<T, A> {
+impl<A: Clone, T: Iterator<Item=A>> Iterator for Slide<T, A> {
+  type Item = Vec<A>;
+
   fn next(&mut self) -> Option<Vec<A>> {
     return_if!(self.n == 0, None);
     return_if!(!self.push_window(), None);
@@ -54,19 +56,19 @@ impl<A: Clone, T: Iterator<A>> Iterator<Vec<A>> for Slide<T, A> {
   }
 }
 
-pub trait SlideIterator<T: Iterator<A>, A> {
-  fn slide(self, n: uint) -> Slide<T, A>;
+pub trait SlideIterator<T: Iterator<Item=A>, A> {
+  fn slide(self, n: usize) -> Slide<T, A>;
 }
 
-impl<A: Clone, T: Iterator<A>> SlideIterator<T, A> for T {
-  fn slide(self, n: uint) -> Slide<T, A> {
+impl<A: Clone, T: Iterator<Item=A>> SlideIterator<T, A> for T {
+  fn slide(self, n: usize) -> Slide<T, A> {
     Slide::new(self, n)
   }
 }
 
 #[test]
 fn test_slide() {
-  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(3);
+  let mut slide_iter = vec![1i8, 2, 3, 4, 5].into_iter().slide(3);
   assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3]);
   assert_eq!(slide_iter.next().unwrap(), vec![2, 3, 4]);
   assert_eq!(slide_iter.next().unwrap(), vec![3, 4, 5]);
@@ -75,19 +77,19 @@ fn test_slide() {
 
 #[test]
 fn test_slide_equal_window() {
-  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(5);
+  let mut slide_iter = vec![1i8, 2, 3, 4, 5].into_iter().slide(5);
   assert_eq!(slide_iter.next().unwrap(), vec![1, 2, 3, 4, 5]);
   assert!(slide_iter.next().is_none());
 }
 
 #[test]
 fn test_slide_zero_window() {
-  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(0);
+  let mut slide_iter = vec![1i8, 2, 3, 4, 5].into_iter().slide(0);
   assert!(slide_iter.next().is_none());
 }
 
 #[test]
 fn test_slide_overlong_window() {
-  let mut slide_iter = vec![1i, 2, 3, 4, 5].into_iter().slide(7);
+  let mut slide_iter = vec![1i8, 2, 3, 4, 5].into_iter().slide(7);
   assert!(slide_iter.next().is_none());
 }
