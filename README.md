@@ -3,8 +3,6 @@ rust-iterslide
 
 This package implements a "sliding window" iterator.
 
-**This package is deprecated**, since its functionality is now implemented in the standard library; [use `.windows` instead](http://static.rust-lang.org/doc/master/std/primitive.slice.html#method.windows).
-
 Sample usage:
 
 ```rust
