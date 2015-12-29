@@ -13,10 +13,20 @@ extern crate iterslide;
 use iterslide::SlideIterator;
 
 fn main() {
-  for window in vec![1i8, 2, 3, 4, 5].into_iter().slide(3) {
-    println!("{}", window);
-  }
+    let x: Vec<i8> = vec![1, 2, 3, 4, 5];
+    
+    for window in x.into_iter().slide(3) {
+      println!("{:?}", window);
+    }
 }
+```
+
+Output:
+
+```
+[1, 2, 3]
+[2, 3, 4]
+[3, 4, 5]
 ```
 
 Contributors
