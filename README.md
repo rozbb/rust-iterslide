@@ -1,6 +1,8 @@
 rust-iterslide
 ===============
 
+[![Build Status](https://travis-ci.org/slapresta/rust-iterslide.svg?branch=master)](https://travis-ci.org/slapresta/rust-iterslide)
+
 This package implements a "sliding window" iterator.
 
 Sample usage:
