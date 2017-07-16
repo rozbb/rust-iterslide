@@ -14,7 +14,7 @@ use iterslide::SlideIterator;
 
 fn main() {
     let x: Vec<i8> = vec![1, 2, 3, 4, 5];
-    
+
     for window in x.into_iter().slide(3) {
       println!("{:?}", window);
     }
