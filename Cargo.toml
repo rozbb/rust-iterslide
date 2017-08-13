@@ -2,10 +2,10 @@
 
 name = "iterslide"
 version = "0.0.5"
-authors = ["Santiago Lapresta <santiago.lapresta@gmail.com>"]
+authors = ["Noemi Lapresta <santiago.lapresta@gmail.com>"]
 readme = "README.md"
 keywords = ["iterator", "iter", "slide", "sliding", "window"]
 license = "MIT/Apache-2.0"
-homepage = "https://github.com/slapresta/rust-iterslide"
-repository = "https://github.com/slapresta/rust-iterslide"
+homepage = "https://github.com/purpliminal/rust-iterslide"
+repository = "https://github.com/purpliminal/rust-iterslide"
 description = "A \"sliding window\" iterator."
