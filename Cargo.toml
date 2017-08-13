@@ -2,7 +2,7 @@
 
 name = "iterslide"
 version = "0.0.5"
-authors = ["Noemi Lapresta <santiago.lapresta@gmail.com>"]
+authors = ["Noemi Lapresta <noemi.lapresta@gmail.com>"]
 readme = "README.md"
 keywords = ["iterator", "iter", "slide", "sliding", "window"]
 license = "MIT/Apache-2.0"
