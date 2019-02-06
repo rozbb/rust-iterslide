@@ -3,7 +3,7 @@ rust-iterslide
 
 [![Version](https://img.shields.io/crates/v/iterslide.svg)](https://crates.io/crates/iterslide)
 [![Docs](https://docs.rs/iterslide/badge.svg)](https://docs.rs/iterslide)
-[![Build Status](https://travis-ci.org/purpliminal/rust-iterslide.svg?branch=master)](https://travis-ci.org/purpliminal/rust-iterslide)
+[![Build Status](https://travis-ci.org/rozbb/rust-iterslide.svg?branch=master)](https://travis-ci.org/rozbb/rust-iterslide)
 
 This package implements a "sliding window" iterator.
 
