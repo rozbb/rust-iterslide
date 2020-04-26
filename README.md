@@ -5,20 +5,20 @@ rust-iterslide
 [![Docs](https://docs.rs/iterslide/badge.svg)](https://docs.rs/iterslide)
 [![Build Status](https://travis-ci.org/rozbb/rust-iterslide.svg?branch=master)](https://travis-ci.org/rozbb/rust-iterslide)
 
-This package implements a "sliding window" iterator.
+This package implements "sliding window" functionality for any iterator over a `Clone`able item.
 
-Sample usage:
+Example
+-------
 
 ```rust
-extern crate iterslide;
-
 use iterslide::SlideIterator;
 
 fn main() {
     let v: Vec<i8> = vec![1, 2, 3, 4, 5];
 
     for window in v.slide(3) {
-      println!("{:?}", window);
+        // window is a VecDeque<i8>
+        println!("{:?}", window);
     }
 }
 ```
@@ -30,6 +30,13 @@ Output:
 [2, 3, 4]
 [3, 4, 5]
 ```
+
+Alternatives
+------------
+
+* Rust's [`windows`](https://doc.rust-lang.org/std/primitive.slice.html#method.windows) method for slices does what you would expect. This does no allocation. However, this is only implemented for slices.
+
+* itertools' [`tuple_windows`](https://docs.rs/itertools/0.9.0/itertools/trait.Itertools.html#method.tuple_windows) method returns a sliding window iterator over tuples instead of `VecDeques`. This saves a `VecDeque` allocation in construction of the iterator. However, `tuple_windows` is limited to window sizes of at most 4.
 
 License
 -------
